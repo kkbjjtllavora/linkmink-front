@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import { QueryClient, QueryClientProvider, useQuery } from "react-query";
+import axios from "axios";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const queryClient = new QueryClient();
+
+function compare(a, b) {
+  if (a.score < b.score) {
+    return -1;
+  }
+  if (a.score > b.score) {
+    return 1;
+  }
+  return 0;
 }
 
-export default App;
+const UserDisplay = () => {
+  const { isLoading, error, data } = useQuery("repoData", () =>
+    axios("http://localhost:3000/users", {
+      headers: {
+        Authorization: `Bearer tok_123abc`,
+      },
+    }).then((res) => res.data)
+  );
+
+  return isLoading ? (
+    <div>Loading...</div>
+  ) : (
+    <ul>
+      {data.sort(compare).map((user) => (
+        <li>{`${user.name}: ${user.score}`}</li>
+      ))}
+    </ul>
+  );
+};
+
+export default function App() {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <UserDisplay />
+    </QueryClientProvider>
+  );
+}
