@@ -2,7 +2,7 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-**IMPORTANT: Make sure to run the server on http://localhost:3000.**
+**IMPORTANT: Make sure to run the backend server on http://localhost:3000.**
 
 **IMPORTANT: CORS error might occur. Just install and run cors middleware on the `backend.ts` file.**
 
