@@ -1,4 +1,4 @@
-# LINKMINK FRONTEND TECHNICAL EXAM
+# Linkmink technical exam
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -6,13 +6,13 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 **IMPORTANT: CORS error might occur. Just install and run cors middleware on the `backend.ts` file.**
 
-`@linkmink-interview terminal`
+**`@linkmink-interview terminal`**
 
 ```
 npm install cors
 ```
 
-`@backend.ts`
+**`@backend.ts`**
 
 ```
 var cors = require("cors");
